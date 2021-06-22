@@ -10,16 +10,17 @@ let nSubmitButton = document.getElementById('nSubmit');
 let nArr = []; //stores ZdogRect object for each bar
 let nVal = []; //stores the array that needs to be sorted 
 let unsorted = '#c9751a'
-let sorted = 'brown'
+let sorted = 'green'
 let sorting = 'yellow'
+let swapColor = 'red'
 
 
 nSubmitButton.addEventListener('click', () => {  // generate graph when submit button is clicked
     
     generateNums(nTextBox.value);
     createCanvas(nTextBox.value);
-    setTimeout(insertionSort, 2000);
-    //insertionSort();
+    insertionSort();
+    //highlight();
     //selectionSort();
 });
 
@@ -35,7 +36,7 @@ function generateNums(size) {  // generates array of size ntextBox.value, popula
 // do drawing stuff based on given array and N value
 
 function createCanvas(size) { 
-  
+    console.log("creating canvas");
    
     let barWidth = (canvas.width/size);
     let illo = new Zdog.Illustration({  //main parent object of 
@@ -76,51 +77,73 @@ function createCanvas(size) {
     //insertionSort();
 }
 
-function selectionSort() {
+async function selectionSort() {
 
-    let curr_pos = 0; //find the position with the lowest current value 
-    let temp = 0; //need it for the swap
+    let curr_pos = 0; // find the position with the lowest current value 
+    let temp = 0; // need it for the swap
     for (let i = 0; i < nTextBox.value - 1; ++i) {
         curr_pos = i;
         nVal[i][1] = sorting;
+        await pause(1000);
+        createCanvas(nTextBox.value);
+        for (let j = curr_pos + 1; j < nTextBox.value; ++j) { // finds the lowest relative value in the array
+            if (nVal[j][0] < nVal[curr_pos][0])
+                 curr_pos = j;
+        }
         
-        setTimeout(function (){
-            createCanvas(nTextBox.value);
-            for (let j = curr_pos + 1; j < nTextBox.value; ++j) { //finds the lowest relative value in the array
-                if (nVal[j] < nVal[curr_pos])
-                    curr_pos = j;
-            }
-        }, 500);
-        
-
         //swap 
-        nVal[i][1] = sorted;
         temp = nVal[i];
         nVal[i] = nVal[curr_pos];
         nVal[curr_pos] = temp;
+
+        nVal[curr_pos][1] = swapColor;
+        await pause(1000);
         createCanvas(nTextBox.value);
         
+
+
+        nVal[i][1] = sorted;
+        if (i != curr_pos) {
+            nVal[curr_pos][1] = unsorted;
+        }
+        await pause(1000);
+        createCanvas(nTextBox.value);
     }
+    nVal[nTextBox.value - 1][1] = sorted;
+    createCanvas(nTextBox.value);
+    console.log(nVal);
+    
 }
 
-function insertionSort() {
+
+async function insertionSort() {
     let val, j;
     nVal[0][1] = sorted;
     for (let i = 1; i < nTextBox.value; i++) {
-        val = nVal[i][0]; // current value to sort
-        nVal[i][1] = sorting;
-        setTimeout(createCanvas(nTextBox.value), 500);
+        val = nVal[i]; // current value to sort
+        val[1] = sorting; //nVal[i][1] = sorting;
+        await pause(1000);
+        createCanvas(nTextBox.value);
         j = i; // only loop through "sorted" portion
-        while (j > 0 && val < nVal[j-1][0]) {  // keep going through sorted portion until correct position is found
-            nVal[j][0] = nVal[j-1][0]; // shift other values up
-            nVal[j][1] = nVal[j-1][1];
+        while (j > 0 && val[0] < nVal[j-1][0]) {  // keep going through sorted portion until correct position is found
+            nVal[j] = nVal[j-1]; // shift other values up
+            nVal[j][1] = sorted;
+            nVal[j-1] = val;
             j--;
-            setTimeout(createCanvas(nTextBox.value), 500);
+            await pause(1000);
+            createCanvas(nTextBox.value);
         }
-        nVal[j][0] = val;
+
         nVal[j][1] = sorted;
-        setTimeout(createCanvas(nTextBox.value), 500);
+        await pause(1000);
+        createCanvas(nTextBox.value);
     }
+}
+
+function pause(ms) {  // pause execution for a given duration in milliseconds
+    return new Promise(resolve => {
+        setTimeout(() => { resolve('') }, ms);
+    })
 }
 
 
