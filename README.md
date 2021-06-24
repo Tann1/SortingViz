@@ -5,3 +5,5 @@
 - [x] update canvas as selection/insertion sort proceed
 - [ ] add option to pick between the two sorts
 - [ ] add option to change pause time
+
+push test
