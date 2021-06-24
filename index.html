@@ -5,13 +5,16 @@
     </head>
     <body>
         <main>
-            <h1>smile</h1>
-            <h2>smile</h2>
-            <h3> YAH</h3>
+            <h1>Sorting Algorithm Visualizer</h1>
             <div id="nBarsInput">
+                <select id='algoSelect'>
+                    <option value='Selection Sort'>Selection Sort</option>
+                    <option value='Insertion Sort'>Insertion Sort</option>
+                </select>
                 <label>Enter a Value for N</label>
                 <input type="text" name="nBars" id='nTextBox'>
                 <input type="submit" value="Go" id='nSubmit'>
+                <input type="submit" value="Replay" id='replayButton'>
             </div>
             <canvas class='zdog-canvas' width='1000' height='500'></canvas>
         </main>

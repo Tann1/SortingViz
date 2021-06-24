@@ -1,5 +1,6 @@
 // JS script goes here
 let form = document.querySelector('#nBarsInput'); //# = reference to ID
+let sortType = document.querySelector('#algoSelect');
 
 
 
@@ -7,8 +8,9 @@ let canvas = document.querySelector('.zdog-canvas');
 let ctx = canvas.getContext('2d'); 
 let nTextBox = document.getElementById('nTextBox');
 let nSubmitButton = document.getElementById('nSubmit');
-let nArr = []; //stores ZdogRect object for each bar
+let replayButton = document.getElementById("replayButton");
 let nVal = []; //stores the array that needs to be sorted 
+let nValUnsorted = [];
 let unsorted = '#c9751a'
 let sorted = 'green'
 let sorting = 'yellow'
@@ -16,14 +18,34 @@ let swapColor = 'red'
 
 
 nSubmitButton.addEventListener('click', () => {  // generate graph when submit button is clicked
-    
     generateNums(nTextBox.value);
-    createCanvas(nTextBox.value);
-    insertionSort();
-    //highlight();
-    //selectionSort();
+    startSort();
 });
 
+replayButton.addEventListener('click', () => {
+    nVal = nValUnsorted;
+    console.log(nValUnsorted);
+    startSort();
+});
+
+
+function startSort() {
+    createCanvas(nTextBox.value);
+    switch (sortType.value) {
+        case 'Selection Sort': {
+            selectionSort();
+            break;
+        }
+        case 'Insertion Sort': {
+            insertionSort();
+            break;
+        }
+        default: {
+            alert("Invalid sort type");
+            break;
+        }
+    }
+}
 
 function generateNums(size) {  // generates array of size ntextBox.value, populated with random numbers
     nVal = [];  // reset array
@@ -31,13 +53,12 @@ function generateNums(size) {  // generates array of size ntextBox.value, popula
         let randVal = Math.floor((Math.random() * 0.55 * canvas.height) + (0.40 * canvas.height));
         nVal.push([randVal, unsorted]);
     }
+    copy();
 }
 
 // do drawing stuff based on given array and N value
 
 function createCanvas(size) { 
-    console.log("creating canvas");
-   
     let barWidth = (canvas.width/size);
     let illo = new Zdog.Illustration({  //main parent object of 
         element: ".zdog-canvas",
@@ -72,9 +93,6 @@ function createCanvas(size) {
     }
 
 
-    
-    //selectionSort();
-    //insertionSort();
 }
 
 async function selectionSort() {
@@ -96,7 +114,7 @@ async function selectionSort() {
         nVal[i] = nVal[curr_pos];
         nVal[curr_pos] = temp;
 
-        nVal[curr_pos][1] = swapColor;
+        nVal[curr_pos][1] = sorting;
         await pause(1000);
         createCanvas(nTextBox.value);
         
@@ -147,3 +165,9 @@ function pause(ms) {  // pause execution for a given duration in milliseconds
 }
 
 
+function copy() {
+    nValUnsorted = [];
+    for (let i = 0; i < nVal.length; ++i) {
+        nValUnsorted.push(nVal[i]);
+    }
+}
