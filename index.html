@@ -7,12 +7,14 @@
         <main>
             <h1>Sorting Algorithm Visualizer</h1>
             <div id="nBarsInput">
+                <label>Enter a sorting speed (in seconds)</label>
+                <input type="text" name="sortSpeed" id='sortSpeed' value="1">
                 <select id='algoSelect'>
                     <option value='Selection Sort'>Selection Sort</option>
                     <option value='Insertion Sort'>Insertion Sort</option>
                 </select>
                 <label>Enter a Value for N</label>
-                <input type="text" name="nBars" id='nTextBox'>
+                <input type="text" name="nBars" id='nTextBox' value="5" required>
                 <input type="submit" value="Go" id='nSubmit'>
                 <input type="submit" value="Replay" id='replayButton'>
             </div>
