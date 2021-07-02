@@ -2,21 +2,33 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="./style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Patrick+Hand&family=Source+Code+Pro&display=swap" rel="stylesheet">
     </head>
     <body>
         <main>
-            <h1>Sorting Algorithm Visualizer</h1>
+            <h1>SORTING ALGORITHM VISUALIZER</h1>
             <div id="nBarsInput">
-                <label>Enter a sorting speed (in seconds)</label>
-                <input type="text" name="sortSpeed" id='sortSpeed' value="1">
-                <select id='algoSelect'>
+                <div id="textInput">
+                    <div>
+                        <label>Enter a sorting speed (in seconds)</label>
+                        <input type="text" name="sortSpeed" id='sortSpeed' value="0.25" class='inputTextBox'>
+                    </div>
+                    <div>
+                        <label>Enter a Value for N</label>
+                        <input type="text" name="nBars" id='nTextBox' value="5" class='inputTextBox' required>
+                    </div>
+                    
+                </div>
+                <div id="nBarsButton">
+                <select id='algoSelect' class='button'>
                     <option value='Selection Sort'>Selection Sort</option>
                     <option value='Insertion Sort'>Insertion Sort</option>
                 </select>
-                <label>Enter a Value for N</label>
-                <input type="text" name="nBars" id='nTextBox' value="5" required>
-                <input type="submit" value="Go" id='nSubmit'>
-                <input type="submit" value="Replay" id='replayButton'>
+                <input type="submit" value="Go" id='nSubmit' class='button'>
+                <input type="submit" value="Replay" id='replayButton' class='button'>
+            </div>
             </div>
             <canvas class='zdog-canvas' width='1000' height='500'></canvas>
         </main>

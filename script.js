@@ -10,10 +10,10 @@ let replayButton = document.getElementById("replayButton");
 let nVal = []; //stores the array that needs to be sorted 
 let nValUnsorted = [];
 let sortSpeed = document.getElementById('sortSpeed');
-let unsorted = '#c9751a'
-let sorted = 'green'
-let sorting = 'yellow'
-let swapColor = 'red'
+let unsorted = '#fc90a9'//'#c9751a'
+let sorted = '#c94260'
+let sorting = '#83BCFF'
+//let swapColor = 'red'
 
 
 nSubmitButton.addEventListener('click', () => {  // generate graph when submit button is clicked
@@ -103,7 +103,7 @@ function createCanvas(size) {
          /* text setup*/
     }
     for (let i = 0; i < size; ++i) {
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
         ctx.font =  (0.50 * barWidth) + 'px monospace';
         ctx.fillText(nVal[i][0], (i * barWidth) + (barWidth/2), 490);

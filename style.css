@@ -1,6 +1,85 @@
 /* CSS goes here */
+:root {
+    --pageColor: #FDB;
+    --buttonColor: #c94260;
+    --LabelColor: rgba(58, 44, 48, 0.959);
+    --textColor: #c94260;
+    --disabledColor: #fc90a9;
+}
+
 body {
+    background-color: var(--pageColor);
+    font-family: 'Patrick Hand', cursive;
+    font-size: 25px;
+
+}
+h1 {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 60px;
+    color: white;
+    text-shadow: 2px 5px var(--textColor);
+}
+
+#nBarsInput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid var(--buttonColor);
+    border-radius: 15px;
+    padding: 30px;
+    width: 1100px;
+}
+
+#textInput {
+    width: 980px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    background-color: var(--buttonColor);
+    border-radius: 3px;
+    border: none;
+    color: white;
+    padding: 5px 25px;
+    margin: 20px 5px;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 5px #999;
+}
+
+.button:hover {
+    background-color: #83BCFF;
+}
+
+.button:active {
+    background-color: #83BCFF;
+    box-shadow: none;
+    transform: translateY(5px);
+}
+
+.button:disabled {
+    background-color: var(--disabledColor);
+}
+
+.inputTextBox {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 25px;
     
+}
+
+.inputTextBox:focus {
+    outline: none;
+}
+
+.inputTextBox:disabled 
+{
+}
+
+
+label {
+    color: var(---LabelColor);
+    margin: 5px 15px;
 }
 
 main {
@@ -10,5 +89,6 @@ main {
 }
 
 .zdog-canvas {
-    background: #FDB; /*#843b62;*/
+    background: var(--pageColor); /*#843b62;*/
+
 }
