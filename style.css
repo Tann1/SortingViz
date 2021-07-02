@@ -1,6 +1,8 @@
 /* CSS goes here */
 body {
-    
+    margin: 0;
+    padding: 0;
+    background-color: #FDB;
 }
 
 main {
