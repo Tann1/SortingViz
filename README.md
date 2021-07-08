@@ -1,4 +1,3 @@
-** https://tann1.github.io/SortingViz/**
 # SortingViz
 
 https://tann1.github.io/SortingViz/
