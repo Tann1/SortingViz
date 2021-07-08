@@ -77,31 +77,12 @@ function generateNums(size) {  // generates array of size ntextBox.value, popula
 
 function createCanvas(size) { 
     let barWidth = (canvas.width/size);
-    let illo = new Zdog.Illustration({  //main parent object of 
-        element: ".zdog-canvas",
-        centered: false
-    });
-
-    let rect = new Zdog.Rect({  // create first bar
-        addTo: illo,
-        width: barWidth * 0.95,
-        height: nVal[0][0],
-        color: nVal[0][1],
-        fill: true,
-        stroke: 4,
-        translate: {y: canvas.height - nVal[0][0] / 2, x : barWidth/2}}); 
-    illo.updateRenderGraph();
-    for(let i = 1; i < size; ++i){  // create rest of the bars by copying the first bar
-        rect.copy({
-            height: nVal[i][0],
-            color: nVal[i][1],
-            translate: {y: canvas.height - nVal[i][0]/ 2, x :  (i * barWidth) + barWidth/2}
-        });
-        //nArr.push(rect);
-        illo.updateRenderGraph();
-        
-         /* text setup*/
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for(let i = 0; i < size; ++i) {
+        ctx.fillStyle = nVal[i][1];
+        ctx.fillRect(i * barWidth, canvas.height - nVal[i][0], barWidth, nVal[i][0]); //x, y, width, height 
     }
+
     for (let i = 0; i < size; ++i) {
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
