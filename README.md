@@ -1,4 +1,7 @@
 # SortingViz
+
+https://tann1.github.io/SortingViz/
+
 - [x] textbox entry and submit button for the userinput of n bars
 - [x] have canvas draw bars according to given array
 - [x] implement selection sort / insertion sort

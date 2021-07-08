@@ -20,6 +20,17 @@ h1 {
     text-shadow: 2px 5px var(--textColor);
 }
 
+a {
+    font-size: 30px;
+    text-decoration: none;
+    color: white;
+    text-shadow: 2px 2px var(--textColor);
+}
+
+a:hover {
+    color: var(--disabledColor);
+}
+
 #nBarsInput {
     display: flex;
     flex-direction: column;
